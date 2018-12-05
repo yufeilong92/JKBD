@@ -3,6 +3,13 @@
     android:layout_height="match_parent"
     android:background="#fff">
 
+    <ProgressBar
+        android:id="@+id/progress"
+        style="@style/Base.Widget.AppCompat.ProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
+
     <TextView
         android:id="@+id/tv_question"
         android:layout_width="match_parent"

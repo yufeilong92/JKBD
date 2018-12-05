@@ -653,7 +653,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
         sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
     }
 
-    void updateObscuredViewVisibility() {
+    public void updateObscuredViewVisibility() {
         if (getChildCount() == 0) {
             return;
         }

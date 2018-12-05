@@ -23,7 +23,10 @@ import com.example.myapplication.view.SlidingUpPanelLayout;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Time;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * 类似驾考宝典做题翻页效果
@@ -57,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         initReadViewPager();
-
         Button bt_pre = (Button) findViewById(R.id.bt_pre);
         Button bt_next = (Button) findViewById(R.id.bt_next);
 
@@ -95,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
     private void initReadViewPager() {
         shadowView = (ImageView) findViewById(R.id.shadowView);
         readerViewPager = (ReaderViewPager) findViewById(R.id.readerViewPager);
-
         // ViewPager适配器
         readerViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -156,13 +157,11 @@ public class MainActivity extends AppCompatActivity {
                                 mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED)) {
                     mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
                 }
-
                 readerViewPager.setCurrentItem(position);
-
                 topicAdapter.notifyCurPosition(curPosition);
                 topicAdapter.notifyPrePosition(prePosition);
-
                 prePosition = curPosition;
+                readerViewPager.refresh();
             }
         });
     }

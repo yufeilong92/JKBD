@@ -27,6 +27,9 @@ public class ReaderViewPager extends ViewPager {
         setScrollerDuration();
     }
 
+    public void refresh() {
+        invalidate();
+    }
     private void setScrollerDuration() {
         try {
             Field field = ViewPager.class.getDeclaredField("mScroller");
@@ -34,11 +37,12 @@ public class ReaderViewPager extends ViewPager {
             FixedSpeedScroller scroller = new FixedSpeedScroller(getContext(),
                     new DecelerateInterpolator());
             field.set(this, scroller);
-            scroller.setmDuration(300);
+            scroller.setmDuration(100);
         } catch (Exception e) {
             Log.e("@", "", e);
         }
     }
+
 
     public void setReadEffect() {
         setPageTransformer(true, new PageTransformer() {

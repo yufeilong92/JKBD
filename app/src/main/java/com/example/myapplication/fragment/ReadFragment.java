@@ -1,14 +1,19 @@
 package com.example.myapplication.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.bean.AnwerInfo;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -25,6 +30,8 @@ public class ReadFragment extends Fragment {
 
     private AnwerInfo.DataBean.SubDataBean subDataBean;
     private View view;
+    private ProgressBar mProgress;
+    private TextView mTvQuestion;
 
     public ReadFragment() {
         // Required empty public constructor
@@ -62,15 +69,17 @@ public class ReadFragment extends Fragment {
     }
 
     private void initView() {
-        TextView tv_question = (TextView) view.findViewById(R.id.tv_question);
-
-        tv_question.setText(subDataBean.getQuestionid() + ". " + subDataBean.getQuestion()
+        mProgress = (ProgressBar) view.findViewById(R.id.progress);
+        mTvQuestion = (TextView) view.findViewById(R.id.tv_question);
+        mProgress.setVisibility(View.GONE);
+        mTvQuestion.setText(subDataBean.getQuestionid() + ". " + subDataBean.getQuestion()
                 + "\n\nA." + subDataBean.getOptiona()
                 + "\nB." + subDataBean.getOptionb()
                 + "\nC." + subDataBean.getOptionc()
                 + "\nD." + subDataBean.getOptiond()
                 + "\n\n\n答案解析：" + subDataBean.getExplain()
         );
+
     }
 
 }
